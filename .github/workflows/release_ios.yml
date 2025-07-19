@@ -25,7 +25,7 @@ jobs:
 
       - name: flutter build ipa
         run: |
-          flutter build ios --release --no-codesign 
+          flutter build ios --release --no-codesign
           ln -sf ./build/ios/iphoneos Payload
           zip -r9 app.ipa Payload/runner.app
 
@@ -34,7 +34,7 @@ jobs:
         run: |
           # Attempt to extract version from tag
           VERSION_FROM_TAG="${GITHUB_REF#refs/tags/v}"
-          
+
           # Check if the extraction was successful (i.e., if the prefix was removed)
           if [[ "$VERSION_FROM_TAG" == "$GITHUB_REF" ]]; then
             # If no prefix was removed, it means GITHUB_REF did not start with 'refs/tags/v'
@@ -81,7 +81,7 @@ jobs:
         run: |
           # Attempt to extract version from tag
           VERSION_FROM_TAG="${GITHUB_REF#refs/tags/v}"
-          
+
           # Check if the extraction was successful (i.e., if the prefix was removed)
           if [[ "$VERSION_FROM_TAG" == "$GITHUB_REF" ]]; then
             # If no prefix was removed, it means GITHUB_REF did not start with 'refs/tags/v'
@@ -97,6 +97,7 @@ jobs:
         uses: ncipollo/release-action@v1
         with:
           name: v${{ steps.version.outputs.version }}
+          token: ${{ secrets.GIT_TOKEN }}
           omitBodyDuringUpdate: true
           omitNameDuringUpdate: true
           omitPrereleaseDuringUpdate: true
