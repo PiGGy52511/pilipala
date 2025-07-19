@@ -94,12 +94,10 @@ jobs:
           fi
 
       - name: Upload Release
-        uses: ncipollo/release-action@v1
+        uses: softprops/action-gh-release@v2
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          name: v${{ steps.version.outputs.version }}
-          token: ${{ secrets.GIT_TOKEN }}
-          omitBodyDuringUpdate: true
-          omitNameDuringUpdate: true
-          omitPrereleaseDuringUpdate: true
-          allowUpdates: true
-          artifacts: Pilipala-Release/*
+          tag_name: v${{ steps.version.outputs.version }}
+          body_path: release
+          files: Pilipala-Release/*
