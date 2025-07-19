@@ -145,3 +145,18 @@ QQ 频道: https://pd.qq.com/s/365esodk3
 - [media-kit](https://github.com/media-kit/media-kit)
 - [dio](https://pub.dev/packages/dio)
 - 等等
+---
+
+## 更新版本
+
+- 修改`v1.0.0`为所需的版本号
+```bash
+git checkout main
+git pull origin main
+git tag v1.0.0
+git push origin v1.0.0
+```
+- 如果要删除tag
+```bash
+git tag -d v1.0.0
+```
